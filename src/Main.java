@@ -23,5 +23,6 @@ public class Main {
 
     //Print corrected max weight of the barbel
     System.out.println("The corrected max barbel weight is " + barbel.getMaxBarbelWeight());
+
   }
 }
