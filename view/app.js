@@ -2,6 +2,13 @@ const form = document.querySelector('#task-form');
 const collection = document.querySelector('.collection');
 const clearBtn = document.querySelector('.clear-tasks');
 const weightInput = document.querySelector('#weight');
+const leftBtn = document.querySelector('#left');
+const rightBtn = document.querySelector('#right');
+const middleBtn = document.querySelector('#middle');
+const weightsLeft = [];
+const weightsRight = [];
+let sumWeightsLeft;
+let sumWeightsRight;
 
 function createElements(value) {
   const li = document.createElement('li');
@@ -11,7 +18,7 @@ function createElements(value) {
   const disk = document.createElement('a');
   link.className = 'delete-item secondary-content';
   link.innerHTML = '<i class="fa fa-remove"></i>';
-  disk.className = 'move-plate secondary-content';
+  disk.className = 'move-plate secondary-content left';
   disk.innerHTML = '<i class="fas fa-compact-disc"></i>';
   li.appendChild(link);
   li.appendChild(disk);
@@ -91,11 +98,36 @@ function getWeights() {
   });
 }
 
-function movePlate(e) {
-  // if (e.target.parentElement.classList.contains('move-plate')) {
+function movePlateLeft(e) {
   if (e.target.parentElement) {
     e.preventDefault();
-    console.log(e.target.innerText);
+    weightsLeft.push(JSON.parse(e.target.innerText));
+    sumWeightsLeft = weightsLeft.reduce((a, b) => a + b);
+    leftBtn.innerText = sumWeightsLeft;
+    //barbell is ready
+    isReady();
+  }
+}
+
+function movePlateRight(e) {
+  if (e.target.parentElement) {
+    e.preventDefault();
+    weightsRight.push(JSON.parse(e.target.innerText));
+    sumWeightsRight = weightsRight.reduce((a, b) => a + b);
+    rightBtn.innerText = sumWeightsRight;
+    //barbell is ready
+    isReady();
+  }
+}
+
+function isReady() {
+  if (sumWeightsRight === sumWeightsLeft) {
+    middleBtn.className = 'waves-effect waves-light btn teal darken-1';
+    middleBtn.innerText = 'Barbell is ready';
+  }
+  else {
+    middleBtn.className = 'waves-effect waves-light btn pink lighten-2';
+    middleBtn.innerText = '------------------';
   }
 }
 
@@ -109,10 +141,14 @@ function loadEventListeners() {
   //delete list of plates
   clearBtn.addEventListener('click', removeList);
   //move plate to left
-  collection.addEventListener('click', movePlate);
+  collection.addEventListener('click', movePlateLeft);
   //move plate to right
-  collection.addEventListener('contextmenu', movePlate);
+  collection.addEventListener('contextmenu', movePlateRight);
+
+
 }
 
 //Load all event listeners
 loadEventListeners();
+
+
