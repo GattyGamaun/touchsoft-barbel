@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <title>Barbell</title>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <div id="main" class="card">
+        <div class="card-content">
+          <span class="card-title">Choose weight from 1 to 20 pounds</span>
+          <div class="row">
+            <form id="task-form">
+              <div class="input-field col s12">
+                <input type="number" name="weight" id="weight" min="1" max="20">
+                <label for="weight">Plate weight</label>
+              </div>
+              <input type="submit" value="Add weight" class="btn orange lighten-2">
+            </form>
+          </div>
+          <div class="row">
+            <h5>Barbell</h5>
+            <div class="btn-group">
+              <a class="waves-effect waves-light btn indigo darken-2" id="left">Left</a>
+              <a class="waves-effect waves-light btn pink lighten-2" id="middle">------------------</a>
+              <a class="waves-effect waves-light btn indigo darken-2" id="right">Right</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          <h5>List of plates</h5>
+          <ul class="collection"></ul>
+          <a href="#" class="clear-tasks btn black">Clear plates</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
