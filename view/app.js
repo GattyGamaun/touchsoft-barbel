@@ -104,7 +104,6 @@ function movePlateLeft(e) {
     weightsLeft.push(JSON.parse(e.target.innerText));
     sumWeightsLeft = weightsLeft.reduce((a, b) => a + b);
     leftBtn.innerText = sumWeightsLeft;
-    console.log('movePlateLeft', sumWeightsLeft);
     e.target.remove();
     removeFromLocalStorage(e.target);
     //barbell is ready
@@ -118,7 +117,6 @@ function movePlateRight(e) {
     weightsRight.push(JSON.parse(e.target.innerText));
     sumWeightsRight = weightsRight.reduce((a, b) => a + b);
     rightBtn.innerText = sumWeightsRight;
-    console.log('movePlateLeft', sumWeightsRight);
     e.target.remove();
     removeFromLocalStorage(e.target);
     //barbell is ready
@@ -145,13 +143,11 @@ function movePlateBackFromLeft(e) {
     storeWeightInLocalStorage(JSON.stringify(deletedWeight));
     if (weightsLeft.length === 1) {
       sumWeightsLeft = weightsLeft[0];
-      console.log('movePlateBackFromLeft', sumWeightsLeft);
       leftBtn.innerText = sumWeightsLeft;
       //barbell is ready
       isReady();
     } else if (weightsLeft.length > 0) {
       sumWeightsLeft = weightsLeft.reduce((a, b) => a + b);
-      console.log('movePlateBackFromLeft', sumWeightsLeft);
       leftBtn.innerText = sumWeightsLeft;
       //barbell is ready
       isReady();
@@ -169,13 +165,11 @@ function movePlateBackFromRight(e) {
     storeWeightInLocalStorage(JSON.stringify(deletedWeight));
     if (weightsRight.length === 1) {
       sumWeightsRight = weightsRight[0];
-      console.log('movePlateBackFromRight', sumWeightsRight);
       rightBtn.innerText = sumWeightsRight;
       //barbell is ready
       isReady();
     } else if (weightsRight.length > 0) {
       sumWeightsRight = weightsRight.reduce((a, b) => a + b);
-      console.log('movePlateBackFromRight', sumWeightsRight);
       rightBtn.innerText = sumWeightsRight;
       //barbell is ready
       isReady();
