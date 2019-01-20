@@ -164,7 +164,7 @@ function movePlateBackFromRight(e) {
       //barbell is ready
       isReady();
     } else {
-      rightBtn.innerText = 'Left';
+      rightBtn.innerText = 'Right';
     }
   }
 }
