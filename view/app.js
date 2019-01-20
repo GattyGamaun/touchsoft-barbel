@@ -104,6 +104,7 @@ function movePlateLeft(e) {
     weightsLeft.push(JSON.parse(e.target.innerText));
     sumWeightsLeft = weightsLeft.reduce((a, b) => a + b);
     leftBtn.innerText = sumWeightsLeft;
+    console.log('movePlateLeft', sumWeightsLeft);
     e.target.remove();
     removeFromLocalStorage(e.target);
     //barbell is ready
@@ -117,6 +118,7 @@ function movePlateRight(e) {
     weightsRight.push(JSON.parse(e.target.innerText));
     sumWeightsRight = weightsRight.reduce((a, b) => a + b);
     rightBtn.innerText = sumWeightsRight;
+    console.log('movePlateLeft', sumWeightsRight);
     e.target.remove();
     removeFromLocalStorage(e.target);
     //barbell is ready
@@ -141,22 +143,21 @@ function movePlateBackFromLeft(e) {
     let deletedWeight = weightsLeft.pop();
     createElements(deletedWeight);
     storeWeightInLocalStorage(JSON.stringify(deletedWeight));
-    if (weightsLeft.length > 0) {
-      sumWeightsLeft = weightsLeft.reduce((a, b) => a + b);
-      console.log('left', sumWeightsLeft);
+    if (weightsLeft.length === 1) {
+      sumWeightsLeft = weightsLeft[0];
+      console.log('movePlateBackFromLeft', sumWeightsLeft);
       leftBtn.innerText = sumWeightsLeft;
       //barbell is ready
       isReady();
-    } else if (weightsLeft.length === 1) {
-      sumWeightsLeft = weightsLeft[0];
-      console.log('left', sumWeightsLeft);
+    } else if (weightsLeft.length > 0) {
+      sumWeightsLeft = weightsLeft.reduce((a, b) => a + b);
+      console.log('movePlateBackFromLeft', sumWeightsLeft);
       leftBtn.innerText = sumWeightsLeft;
       //barbell is ready
       isReady();
     } else {
       leftBtn.innerText = 'Left';
     }
-
   }
 }
 
@@ -166,9 +167,15 @@ function movePlateBackFromRight(e) {
     let deletedWeight = weightsRight.pop();
     createElements(deletedWeight);
     storeWeightInLocalStorage(JSON.stringify(deletedWeight));
-    if (weightsRight.length > 0) {
+    if (weightsRight.length === 1) {
+      sumWeightsRight = weightsRight[0];
+      console.log('movePlateBackFromRight', sumWeightsRight);
+      rightBtn.innerText = sumWeightsRight;
+      //barbell is ready
+      isReady();
+    } else if (weightsRight.length > 0) {
       sumWeightsRight = weightsRight.reduce((a, b) => a + b);
-      console.log('right', sumWeightsRight);
+      console.log('movePlateBackFromRight', sumWeightsRight);
       rightBtn.innerText = sumWeightsRight;
       //barbell is ready
       isReady();
