@@ -32,14 +32,61 @@ function addWeight(e) {
   }
   else {
     createElements(weightInput.value);
+    //store in local storage
+    storeWeightInLocalStorage(weightInput.value);
     //clear input
     weightInput.value = '';
   }
 }
 
+function storeWeightInLocalStorage(value) {
+  let weights;
+  if (localStorage.getItem('weights') === null) {
+    weights = [];
+  } else {
+    weights = JSON.parse(localStorage.getItem('weights'));
+  }
+
+  weights.push(value);
+
+  localStorage.setItem('weights', JSON.stringify(weights));
+}
+
+function removeFromLocalStorage(item) {
+  let weights;
+  if (localStorage.getItem('weights') === null) {
+    weights = [];
+  } else {
+    weights = JSON.parse(localStorage.getItem('weights'));
+  }
+
+  weights.forEach((weight, index) => {
+    if(item.textContent === weight) {
+      weights.splice(index, 1);
+    }
+  });
+
+  localStorage.setItem('weights', JSON.stringify(weights));
+}
+
+function getWeights() {
+  let weights;
+  if (localStorage.getItem('weights') === null) {
+    weights = [];
+  } else {
+    weights = JSON.parse(localStorage.getItem('weights'));
+  }
+
+  weights.forEach((weight) => {
+    createElements(weight);
+  });
+}
+
 function removeWeight(e) {
   if (e.target.parentElement.classList.contains('delete-item')) {
     e.target.parentElement.parentElement.remove();
+    //remove from local storage
+    removeFromLocalStorage(e.target.parentElement.parentElement);
   }
 }
 
@@ -47,6 +94,8 @@ function removeList() {
   while (collection.firstChild) {
     collection.removeChild(collection.firstChild);
   }
+  //clear from local storage
+  localStorage.clear();
 }
 
 function movePlateLeft(e) {
@@ -56,6 +105,7 @@ function movePlateLeft(e) {
     sumWeightsLeft = weightsLeft.reduce((a, b) => a + b);
     leftBtn.innerText = sumWeightsLeft;
     e.target.remove();
+    removeFromLocalStorage(e.target);
     //barbell is ready
     isReady();
   }
@@ -68,6 +118,7 @@ function movePlateRight(e) {
     sumWeightsRight = weightsRight.reduce((a, b) => a + b);
     rightBtn.innerText = sumWeightsRight;
     e.target.remove();
+    removeFromLocalStorage(e.target);
     //barbell is ready
     isReady();
   }
@@ -89,6 +140,7 @@ function movePlateBackFromLeft(e) {
   if (weightsLeft.length > 0) {
     let deletedWeight = weightsLeft.pop();
     createElements(deletedWeight);
+    storeWeightInLocalStorage(JSON.stringify(deletedWeight));
     if (weightsLeft.length > 0) {
       sumWeightsLeft = weightsLeft.reduce((a, b) => a + b);
       leftBtn.innerText = sumWeightsLeft;
@@ -105,6 +157,7 @@ function movePlateBackFromRight(e) {
   if (weightsRight.length > 0) {
     let deletedWeight = weightsRight.pop();
     createElements(deletedWeight);
+    storeWeightInLocalStorage(JSON.stringify(deletedWeight));
     if (weightsRight.length > 0) {
       sumWeightsRight = weightsRight.reduce((a, b) => a + b);
       rightBtn.innerText = sumWeightsRight;
@@ -117,6 +170,8 @@ function movePlateBackFromRight(e) {
 }
 
 function loadEventListeners() {
+  //DOM load event
+  document.addEventListener('DOMContentLoaded', getWeights);
   //add weight
   form.addEventListener('submit', addWeight);
   //delete weight from list
