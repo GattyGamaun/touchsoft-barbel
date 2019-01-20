@@ -143,12 +143,20 @@ function movePlateBackFromLeft(e) {
     storeWeightInLocalStorage(JSON.stringify(deletedWeight));
     if (weightsLeft.length > 0) {
       sumWeightsLeft = weightsLeft.reduce((a, b) => a + b);
+      console.log('left', sumWeightsLeft);
+      leftBtn.innerText = sumWeightsLeft;
+      //barbell is ready
+      isReady();
+    } else if (weightsLeft.length === 1) {
+      sumWeightsLeft = weightsLeft[0];
+      console.log('left', sumWeightsLeft);
       leftBtn.innerText = sumWeightsLeft;
       //barbell is ready
       isReady();
     } else {
       leftBtn.innerText = 'Left';
     }
+
   }
 }
 
@@ -160,6 +168,7 @@ function movePlateBackFromRight(e) {
     storeWeightInLocalStorage(JSON.stringify(deletedWeight));
     if (weightsRight.length > 0) {
       sumWeightsRight = weightsRight.reduce((a, b) => a + b);
+      console.log('right', sumWeightsRight);
       rightBtn.innerText = sumWeightsRight;
       //barbell is ready
       isReady();
