@@ -4,28 +4,24 @@ public class Main {
   public static void main(String[] args) {
 
     //Initialize array of plates;
-    int[] initWeights = {2,3,1,1,10,13,20,3};
+//    int[] initWeights = {1,4,3,18,3,3};//0
+//    int[] initWeights = {1,4,3,3,18,3,3};//0
+//    int[] initWeights = {1,2,3,6};//12
+//    int[] initWeights = {1,2};//0
+    int[] initWeights = {1,2,3,4,5,6};//20
+//    int[] initWeights = {3,2,3,4,3,6};//0
+//    int[] initWeights = {2,3,4,12,2};//0
+//    int[] initWeights = {1,2,4,8,16};//0
 
     //Make instance of class
     Barbel barbel = new Barbel(initWeights);
 
-    //Calculate max weight
-    int maxWeight = barbel.getMaxWeight();
-
-    //Print max weight of the barbel
-    System.out.println("The max barbel weight is " + maxWeight);
-
     //Print array of plates
     int[] plates = barbel.getPlates();
-    System.out.println("Plates: " + Arrays.toString(plates));
-
-    //Correct weight
-    int[] correctedPlates = barbel.correctWeight();
-    System.out.println("Corrected Plates: " + Arrays.toString(correctedPlates));
+    System.out.println("Input: " + Arrays.toString(plates));
 
     //Print corrected max weight of the barbel
     int maxCorrectedWeight = barbel.getMaxWeight();
-    System.out.println("The corrected max barbel weight is " + maxCorrectedWeight);
-
+    System.out.println("The max barbel weight is " + maxCorrectedWeight);
   }
 }
