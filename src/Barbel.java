@@ -14,7 +14,7 @@ class Barbel {
     }
   }
 
-  int getMaxWeight() {
+    int getMaxWeight() {
     int maxBarbelWeight = 0;
     for (int i : plates) {
       maxBarbelWeight += i;
@@ -63,8 +63,6 @@ class Barbel {
     }
     return (rightSum == leftSum);
   }
-
-
 
   int[] getPlates() {
     return plates;
