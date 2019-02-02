@@ -1,4 +1,3 @@
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Arrays;
 
@@ -11,9 +10,10 @@ public class Main {
 //    int[] initWeights = {1,2,3,6};//12
 //    int[] initWeights = {1,2};//0
 //    int[] initWeights = {1,2,3,4,5,6};//0
-    int[] initWeights = {3,2,3,4,3,6};//0
+//    int[] initWeights = {3,2,3,4,3,6};//0
 //    int[] initWeights = {2,3,4,12,2};//0
 //    int[] initWeights = {1,2,4,8,16};//0
+    int[] initWeights = {1, 2, 3, 1, 1, 2, 2};//12
 
     //Make instance of class
     Barbel barbel = new Barbel(initWeights);
